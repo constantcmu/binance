@@ -19,6 +19,11 @@ def round_value(input_value):
         a = float(round(input_value, 8))
     return a
 
+
+
+
+
+
 col1, col2, col3 = st.columns(3)
 
 # Widget (Cryptocurrency selection box)
@@ -65,6 +70,17 @@ col7_percent = f'{float(col7_df.priceChangePercent)}%'
 col8_percent = f'{float(col8_df.priceChangePercent)}%'
 col9_percent = f'{float(col9_df.priceChangePercent)}%'
 
+
+a1, a2, a3 = st.columns(3)
+# Create a metrics price box
+last_price_1 = df[df.symbol == col1_selection].lastPrice
+last_price_2 = df[df.symbol == col2_selection].lastPrice
+last_price_3 = df[df.symbol == col3_selection].lastPrice
+
+a1.metric(col1_selection,last_price_1)
+a2.metric(col2_selection,last_price_2)
+a3.metric(col3_selection,last_price_3) 
+
 # Create a metrics price box
 col1.metric(col1_selection, col1_price, col1_percent)
 col2.metric(col2_selection, col2_price, col2_percent)
@@ -80,16 +96,6 @@ st.header('**All Price**')
 st.dataframe(df)
 # st.dataframe(df[df.symbol == "BTCUSDT"])
 
-
-a1, a2, a3 = st.columns(3)
-# Create a metrics price box
-last_price_1 = df[df.symbol == col1_selection].lastPrice
-last_price_2 = df[df.symbol == col2_selection].lastPrice
-last_price_3 = df[df.symbol == col3_selection].lastPrice
-
-a1.metric(col1_selection,last_price_1)
-a2.metric(col2_selection,last_price_2)
-a3.metric(col3_selection,last_price_3)
 
 
 
