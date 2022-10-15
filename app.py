@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import json
 
 st.markdown('''# **Binance Price App**
 A simple cryptocurrency price app pulling price data from *Binance API*.
@@ -21,12 +22,12 @@ def round_value(input_value):
 col1, col2, col3 = st.columns(3)
 
 # Widget (Cryptocurrency selection box)
-col1_selection = st.sidebar.selectbox('Price 1', df.symbol, list(df.symbol).index('BTCBUSD') )
-col2_selection = st.sidebar.selectbox('Price 2', df.symbol, list(df.symbol).index('ETHBUSD') )
-col3_selection = st.sidebar.selectbox('Price 3', df.symbol, list(df.symbol).index('BNBBUSD') )
-col4_selection = st.sidebar.selectbox('Price 4', df.symbol, list(df.symbol).index('XRPBUSD') )
-col5_selection = st.sidebar.selectbox('Price 5', df.symbol, list(df.symbol).index('ADABUSD') )
-col6_selection = st.sidebar.selectbox('Price 6', df.symbol, list(df.symbol).index('DOGEBUSD') )
+col1_selection = st.sidebar.selectbox('Price 1', df.symbol, list(df.symbol).index('BTCUSDT') )
+col2_selection = st.sidebar.selectbox('Price 2', df.symbol, list(df.symbol).index('ETHUSDT') )
+col3_selection = st.sidebar.selectbox('Price 3', df.symbol, list(df.symbol).index('BNBUSDT') )
+col4_selection = st.sidebar.selectbox('Price 4', df.symbol, list(df.symbol).index('XRPUSDT') )
+col5_selection = st.sidebar.selectbox('Price 5', df.symbol, list(df.symbol).index('ADAUSDT') )
+col6_selection = st.sidebar.selectbox('Price 6', df.symbol, list(df.symbol).index('DOGEUSDT') )
 col7_selection = st.sidebar.selectbox('Price 7', df.symbol, list(df.symbol).index('SHIBBUSD') )
 col8_selection = st.sidebar.selectbox('Price 8', df.symbol, list(df.symbol).index('DOTBUSD') )
 col9_selection = st.sidebar.selectbox('Price 9', df.symbol, list(df.symbol).index('MATICBUSD') )
@@ -77,8 +78,22 @@ col3.metric(col9_selection, col9_price, col9_percent)
 
 st.header('**All Price**')
 st.dataframe(df)
+# st.dataframe(df[df.symbol == "BTCUSDT"])
 
-st.info('Credit: Created by Chanin Nantasenamat (aka [Data Professor](https://youtube.com/dataprofessor/))')
+
+a1, a2, a3 = st.columns(3)
+# Create a metrics price box
+last_price_1 = df[df.symbol == col1_selection].lastPrice
+last_price_2 = df[df.symbol == col2_selection].lastPrice
+last_price_3 = df[df.symbol == col3_selection].lastPrice
+
+a1.metric(col1_selection,last_price_1)
+a2.metric(col2_selection,last_price_2)
+a3.metric(col3_selection,last_price_3)
+
+
+
+st.info('Credit: Aooddy')
 
 st.markdown("""
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
