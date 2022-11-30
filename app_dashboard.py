@@ -3,7 +3,7 @@ import yfinance as yf
 import pandas as pd
 
 
-st.title("Lit Finance Dashboard")
+st.title("List Finance Dashboard")
 tickers = ("TSLA",'AAPL','BTC-USD','ETH-USD',"BNB-USD","ADA-USD","goog", "amzn", "BAC", "BA")
 
 dropdown = st.multiselect('Pick your assets',
